@@ -1,67 +1,82 @@
 package aed;
 
 public class Fecha {
-    private int dia;
+
+    private int dia;  // arriba de todo definimos atributos privados
     private int mes;
 
-    public Fecha(int dia, int mes) {
-        this.dia=dia;
-        this.mes=mes;
+
+    public Fecha(int dia, int mes) { // fecha es el constructor mismo nombre que la calse, asigna valores a las partes privadas del objeto
+        this.dia = dia;  //this hace referencia a los que tengo adentro de mi metodo, a los de arriba
+        this.mes = mes;  //se pasan por copia porque son primitivos, si fueran arreglos no conviene hacer esto
+        
+        
     }
 
-    public Fecha(Fecha fecha) {
-        this.dia= fecha.dia;
-        this.mes= fecha.mes; 
-       
+    public Fecha(Fecha fecha) { // esto tmb es constructor, recibe otra instancia de fecha
+        // copiamos los atributos
+        dia = fecha.dia;
+        mes = fecha.mes;
+
     }
 
-    public Integer dia() {
+    public Integer dia() {  //metodo
+        
         return this.dia;
     }
 
-    public Integer mes() {
+    public Integer mes() { //metodo
+        
         return this.mes;
     }
+    
 
     @Override
     public String toString() {
-       return String.valueOf(this.dia)+"/"+String.valueOf(this.mes);
+        return String.valueOf(this.dia)+"/"+String.valueOf(this.mes);
+        
     }
 
     @Override
+    // chequeos burocraticos
     public boolean equals(Object otra) {
         boolean otraEsNull = (otra == null);
-        boolean claseDistinta = (otra.getClass() != this.getClass());
-        
-        if (otraEsNull || claseDistinta)
+        boolean claseDistinta = otra.getClass() != this.getClass();
+        if (otraEsNull || claseDistinta) {
             return false;
-        
-
+        }
+        // casting -> cambiar el tipo
         Fecha otraFecha = (Fecha) otra;
-
-        return (this.dia == otraFecha.dia() && this.mes == otraFecha.mes() );
+        return this.dia == otraFecha.dia() && this.mes == otraFecha.mes();
+  
     }
 
     public void incrementarDia() {
-        //ultimo dia del mes
-        if (diasEnMes(this.mes) == this.dia){
+        //buscar el ultimo dia
+        if (diasEnMes(this.mes) == this.dia()){
+
+            this.dia = 1;
+
+            // diciembre
+
             if (this.mes==12){
-                //diciembre
-                this.mes=1;
-                this.dia=1;
-            } 
+                this.mes = 1;
+            }
+            
+            else{
+                this.mes +=1;
+                
+            }
+        }
 
-            else {
-                this.mes+=1;
-                this.dia=1;
-             }
-               
-        }
-        else{
-            this.dia+=1;
-        }
+        else{ 
+            this.dia += 1;
+
+        }  
+        
+
        
-
+        
     }
 
     private int diasEnMes(int mes) {

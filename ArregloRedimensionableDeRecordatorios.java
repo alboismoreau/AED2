@@ -1,10 +1,11 @@
 package aed;
 
 class ArregloRedimensionableDeRecordatorios {
-private Recordatorio[] secuencia;
+
+    private Recordatorio[] secuencia;
 
     public ArregloRedimensionableDeRecordatorios() {
-       this.secuencia = new Recordatorio[0];
+        this.secuencia =  new Recordatorio[0];
     }
 
     public int longitud() {
@@ -12,16 +13,16 @@ private Recordatorio[] secuencia;
     }
 
     public void agregarAtras(Recordatorio i) {
-        Recordatorio[] nuevaSecuencia = new Recordatorio[secuencia.length +1]; 
+        Recordatorio[] nuevaSecuencia = new Recordatorio[secuencia.length + 1];
+        for (int indice = 0; indice < secuencia.length; indice++){
+            nuevaSecuencia[indice] = secuencia[indice];
         
-        for (int j =0; j < (secuencia.length);j++ ){
-        nuevaSecuencia[j] = secuencia[j];
-        } 
-        nuevaSecuencia[secuencia.length]= i;
+        }
+        
+        nuevaSecuencia[nuevaSecuencia.length -1] = i;
         secuencia = nuevaSecuencia;
 
     }
-
 
     public Recordatorio obtener(int i) {
         // Implementar

@@ -1,31 +1,34 @@
 package aed;
 
 public class Recordatorio {
+
     private String mensaje;
     private Fecha fecha;
     private Horario horario;
 
     public Recordatorio(String mensaje, Fecha fecha, Horario horario) {
-        this.mensaje=mensaje;
-        this.fecha= new Fecha(fecha);
-        this.horario=horario;
+        this.mensaje = new String (mensaje);
+        this.fecha = new Fecha(fecha);
+        this.horario = new Horario (horario);
+
     }
 
     public Horario horario() {
-        return this.horario;
+        return new Horario (horario);
     }
 
     public Fecha fecha() {
-        return new Fecha(fecha); //para evitar aliasing cada vez poner new y el constructor
+        return new Fecha (fecha);
     }
 
     public String mensaje() {
-        return this.mensaje;
+        return new String(mensaje);
     }
 
     @Override
     public String toString() {
-        return this.mensaje+ " @ "+ fecha.toString() +" " + horario.toString();
+        return this.mensaje +" @ "+ fecha.toString() + " " + horario.toString();
+        
     }
 
     @Override
